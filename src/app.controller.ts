@@ -28,8 +28,8 @@ export class AppController {
   }
 
   @Get()
-  getHello(@Req() request: Request): string {
-    return this.appService.getHello(request);
+  getHello(): string {
+    return this.appService.getHello();
   }
 
   @Post()
