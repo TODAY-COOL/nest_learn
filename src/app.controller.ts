@@ -6,9 +6,14 @@ import {
   Req,
   Query,
   Param,
+  Body,
+  UseFilters,
+  UsePipes,
 } from '@nestjs/common';
-import { Request } from 'express';
+import { query, Request } from 'express';
 import { AppService } from './app.service';
+import { HttpExceptionFilter } from './error/http-exception.filter';
+import { ValidationPipe } from './pipes/validate.pipe';
 interface IQuery {
   id?: string;
   name?: string;
@@ -34,12 +39,20 @@ export class AppController {
 
   @Post()
   @Header('Content-Type', 'application/json;utf8')
-  create(): string {
-    const people = {
-      name: '小明',
-      id: 's',
-    };
-    return this.appService.postRequest(people);
+  create(@Req() req): string {
+    return this.appService.postRequest(req);
+  }
+
+  @Post('post')
+  @Header('Access-Control-Allow-Origin', '*')
+  @UseFilters(HttpExceptionFilter)
+  testPostApis(@Body() body, @Query() query, @Param() params) {
+    console.log(body, query, params, '=======>>>数据');
+    return JSON.stringify({
+      body,
+      query,
+      params,
+    });
   }
 }
 

@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { IMyService } from './service/service.interface';
 
 @Injectable()
 export class AppService {
@@ -7,8 +6,10 @@ export class AppService {
     return 'Hello World!';
   }
 
-  postRequest(props: IMyService): string {
-    console.log(props, '带参');
-    return 'this is a post request!!!!!!';
+  postRequest(props) {
+    console.log(props.body, '带参');
+    return {
+      ...props,
+    };
   }
 }
