@@ -38,21 +38,23 @@ export class AppController {
   }
 
   @Post()
-  @Header('Content-Type', 'application/json;utf8')
+  // @Header('Content-Type', 'application/json;utf8')
   create(@Req() req): string {
     return this.appService.postRequest(req);
   }
 
   @Post('post')
-  @Header('Access-Control-Allow-Origin', '*')
+  // @Header('Access-Control-Allow-Origin', '*')
   @UseFilters(HttpExceptionFilter)
-  testPostApis(@Body() body, @Query() query, @Param() params) {
-    console.log(body, query, params, '=======>>>数据');
-    return JSON.stringify({
+  testPostApis(@Body() body, @Query() query, @Param() params, @Req() req: Request) {
+    console.log(body, query, params, req.route.path, '=======>>>数据');
+    const responseData = {
+      path: req.route.path,
       body,
       query,
       params,
-    });
+    }
+    return responseData
   }
 }
 
