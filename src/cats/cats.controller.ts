@@ -1,4 +1,4 @@
-import { Controller, Get, Header, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { CatsService } from './cats.services';
 
 @Controller('cats')
@@ -6,14 +6,17 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Get()
-  getCats() {
-    return this.catsService.getCats();
+  getCats(
+    @Query('name') name: string,
+  ) {
+    return this.catsService.getCats(name);
   }
 
   @Post()
-  @Header('Access-Control-Allow-Origin', '*')
-  testPost() {
-    console.log('请求到了这里吗');
-    return this.catsService.testPost();
+  testPost(
+    @Body('type') type: string,
+    @Body('code') code: string,
+  ) {
+    return this.catsService.testPost(type, code);
   }
 }

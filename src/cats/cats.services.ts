@@ -2,14 +2,14 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class CatsService {
-  getCats() {
-    return 'cats service';
+  getCats(name?: string) {
+    return {
+      code: 200,
+      name,
+    };
   }
 
-  testPost() {
-    return {
-      name: 'sss',
-      code: '2',
-    };
+  testPost(type?: string, code?: string) {
+    return {type, code};
   }
 }
