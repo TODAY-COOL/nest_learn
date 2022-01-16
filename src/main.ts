@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-// import helmet from 'helmet';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import helmet from 'helmet';
 
 // import { HttpExceptionFilter } from './error/http-exception.filter';
 // https://github.com/staart/api 参考代码

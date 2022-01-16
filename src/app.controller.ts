@@ -45,14 +45,31 @@ export class AppController {
 
   @Post('post')
   // @Header('Access-Control-Allow-Origin', '*')
+  // @Header('')
   @UseFilters(HttpExceptionFilter)
-  testPostApis(@Body() body, @Query() query, @Param() params, @Req() req: Request) {
-    console.log(body, query, params, req.route.path, '=======>>>数据');
+  testPostApis(
+    @Body('name') name: string,
+    @Query('names') names: string,
+    @Query('id') id: string,
+  ) {
+    // { headers 数据
+    //   host: '192.168.1.107:3335',
+    //   connection: 'keep-alive',
+    //   'content-length': '13',
+    //   pragma: 'no-cache',
+    //   'cache-control': 'no-cache',
+    //   'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36',
+    //   'content-type': 'application/json;charset=utf-8',
+    //   accept: '*/*',
+    //   origin: 'http://192.168.88.1:3333',
+    //   referer: 'http://192.168.88.1:3333/',
+    //   'accept-encoding': 'gzip, deflate',
+    //   'accept-language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7'
+    // }
     const responseData = {
-      path: req.route.path,
-      body,
-      query,
-      params,
+      name,
+      names,
+      id,
     }
     return responseData
   }
