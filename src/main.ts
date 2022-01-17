@@ -1,7 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
-import helmet from 'helmet';
 
 // import { HttpExceptionFilter } from './error/http-exception.filter';
 // https://github.com/staart/api 参考代码
@@ -10,9 +9,8 @@ import helmet from 'helmet';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   // app.useGlobalFilters(new HttpExceptionFilter());
-  
-  // app.use(helmet())
-  app.enableCors()
+
+  app.enableCors();
   await app.listen(3335);
   console.log('😆😆😆😆 serve is start');
 }

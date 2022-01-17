@@ -70,8 +70,8 @@ export class AppController {
       name,
       names,
       id,
-    }
-    return responseData
+    };
+    return responseData;
   }
 }
 
