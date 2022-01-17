@@ -2,18 +2,15 @@ import {
   Controller,
   Get,
   Post,
-  Header,
   Req,
   Query,
   Param,
   Body,
   UseFilters,
-  UsePipes,
 } from '@nestjs/common';
-import { query, Request } from 'express';
+import { Request } from 'express';
 import { AppService } from './app.service';
 import { HttpExceptionFilter } from './error/http-exception.filter';
-import { ValidationPipe } from './pipes/validate.pipe';
 interface IQuery {
   id?: string;
   name?: string;
