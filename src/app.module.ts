@@ -7,11 +7,12 @@ import { CatsModule } from './cats/cats.module';
 import { HttpExceptionFilter } from './error/http-exception.filter';
 // import { BodyParserMiddleware } from './middleware/bodyParser.middleware';
 import { LogMiddleware } from './middleware/log.middleware';
+import { HomeModule } from './module/home/home.module';
 // import { RowBodyParserMiddleware } from './middleware/rowBodyParser.middleware';
 import { ValidationPipe } from './pipes/validate.pipe';
 
 @Module({
-  imports: [CatsModule],
+  imports: [CatsModule, HomeModule],
   controllers: [AppController, MyAppController],
   providers: [
     {
@@ -28,7 +29,6 @@ import { ValidationPipe } from './pipes/validate.pipe';
     },
     AppService,
   ],
-  exports: [], // 由本模块提供并应在其他模块中可用的提供者的子集。
 })
 export class AppModule implements NestModule {
   public configure(consumer: MiddlewareConsumer): void {
