@@ -9,6 +9,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   // app.useGlobalFilters(new HttpExceptionFilter());
+  // app.useGlobalGuards(RolesGuard);
 
   app.enableCors();
   await app.listen(3335);

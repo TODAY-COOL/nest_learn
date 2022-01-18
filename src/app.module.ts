@@ -1,12 +1,13 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { APP_FILTER, APP_PIPE } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AppController, MyAppController } from './app.controller';
 import { AppService } from './app.service';
+import { RolesGuard } from './auth/roles.guard';
 import { CatsModule } from './cats/cats.module';
 import { HttpExceptionFilter } from './error/http-exception.filter';
-import { BodyParserMiddleware } from './middleware/bodyParser.middleware';
+// import { BodyParserMiddleware } from './middleware/bodyParser.middleware';
 import { LogMiddleware } from './middleware/log.middleware';
-import { RowBodyParserMiddleware } from './middleware/rowBodyParser.middleware';
+// import { RowBodyParserMiddleware } from './middleware/rowBodyParser.middleware';
 import { ValidationPipe } from './pipes/validate.pipe';
 
 @Module({
@@ -16,6 +17,10 @@ import { ValidationPipe } from './pipes/validate.pipe';
     {
       provide: APP_FILTER,
       useClass: HttpExceptionFilter,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
     },
     {
       provide: APP_PIPE,
@@ -35,12 +40,4 @@ export class AppModule implements NestModule {
       .apply(LogMiddleware)
       .forRoutes('*');
   }
-  // static forRoot(entities = [], options?): DynamicModule {
-  //   console.log(entities, options, '传进来的数据');
-  //   return {
-  //     module: AppModule,
-  //     providers: [],
-  //     controllers: [],
-  //   };
-  // }
 }
