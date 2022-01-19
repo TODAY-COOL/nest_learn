@@ -13,6 +13,6 @@ async function bootstrap() {
 
   app.enableCors();
   await app.listen(3335);
-  console.log('😆😆😆😆 serve is start');
+  console.log('😆😆😆😆 serve is start => ' + (await app.getUrl()));
 }
 bootstrap();
