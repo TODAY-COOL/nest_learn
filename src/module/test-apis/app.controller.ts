@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { AppService } from './app.service';
-import { HttpExceptionFilter } from './error/http-exception.filter';
+import { HttpExceptionFilter } from '../../error/http-exception.filter';
 interface IQuery {
   id?: string;
   name?: string;

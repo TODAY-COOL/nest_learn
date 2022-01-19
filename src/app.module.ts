@@ -1,7 +1,10 @@
 import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
 import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
-import { AppController, MyAppController } from './app.controller';
-import { AppService } from './app.service';
+import {
+  AppController,
+  MyAppController,
+} from './module/test-apis/app.controller';
+import { AppService } from './module/test-apis/app.service';
 import { RolesGuard } from './auth/roles.guard';
 import { CatsModule } from './cats/cats.module';
 import { HttpExceptionFilter } from './error/http-exception.filter';
